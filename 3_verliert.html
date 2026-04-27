@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>3_verliert_noFinish_21</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>3_verliert</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7518,8 +7518,9 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Bewerbungsaufgabe---3-verliert">Bewerbungsaufgabe - 3 verliert<a class="anchor-link" href="#Bewerbungsaufgabe---3-verliert">¶</a></h1><p>Autor: Nico Rautert (Thopia: <a href="https://github.com/thopia03">https://github.com/thopia03</a>)</p>
-<p><a style="color: #9B5DE5"> Wichtig: Hiermit erkläre ich, dass ich diese Aufgabe <u><b> ohne den Einsatz von generativer KI </b></u> löse. Sollte es doch zu dem Einsatz von dieser kommen, um z.B. eine grobe Komplexitätsanalyse oder Inspiration für mögliche Frameworks zu bekommen, so wird dies <u><b> explizit gekennzeichnet </b></u> und der Kontext des Chats mit Link angegeben zum überprüfen &amp; nachlesen.</a></p>
-<p>Auch möchte ich davon absehen, zu sehr auf die Rechtschreibung zu achten, da ich viele meiner Implementierungen auf Englisch schreibe. Außerdem möchte ich meinen Gedankengang näher bringen und nicht meine Mächtigkeit der deutschen Rechtschreibung &amp; Grammatik ^^</p>
+<p><a style="color: #9B5DE5"> Wichtig: Hiermit erkläre ich, dass ich diese Aufgabe <u><b> ohne den Einsatz von generativer KI </b></u> löse. Sollte es doch zum Einsatz von dieser kommen, um z.B. eine grobe Komplexitätsanalyse oder Inspiration für mögliche Frameworks zu bekommen, so wird dies <u><b> explizit gekennzeichnet </b></u> und der Kontext des Chats mit Link angegeben zum Überprüfen &amp; Nachlesen.</a></p>
+<p>Der Code zu der Aufgabe befindet sich im Repository <a href="https://github.com/Thopia03/3VerliertGame">https://github.com/Thopia03/3VerliertGame</a></p>
+<p>Ebenfalls ist mir im Nachhinein aufgefallen, dass GitHub-Copilot wohl aktiviert war. Ich habe Copilot nicht aktiv genutzt, um mir Code generieren zu lassen.</p>
 </div>
 </div>
 </div>
@@ -7530,41 +7531,40 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="-Organisation-und-Einf%C3%BChrung-"><u> Organisation und Einführung </u><a class="anchor-link" href="#-Organisation-und-Einf%C3%BChrung-">¶</a></h2><p>Bevor ich mich inhaltlich in die gegebene Aufgabe einarbeite, möchte ich ein paar organisatorische Sachen klären.</p>
-<p>Dieses Dokument wurde mit Jupyter-Notebook geschrieben, da sich dies in meiner Erfahrung für solche Aufgaben, bei welchen man seine Gedankengänge dokumentiert, ganz gut anbietet.</p>
-<p>Um meinen Arbeitsprozess nachvollziehbarer zu machen, erkläre ich im folgenden meine Gliederung. Diese dient für mich zur Orientierung im Entwicklungsprozess, als auch zum Verständnis.</p>
+<h2 id="-Organisation-und-Einf%C3%BChrung-"><u> Organisation und Einführung </u><a class="anchor-link" href="#-Organisation-und-Einf%C3%BChrung-">¶</a></h2><p>Bevor ich mich inhaltlich in die gegebene Aufgabe einarbeite, möchte ich ein paar organisatorische Dinge klären.</p>
+<p>Dieses Dokument wurde mit Jupyter-Notebook geschrieben, da sich dies nach meiner Erfahrung für solche Aufgaben, bei welchen man seine Gedankengänge dokumentiert, sehr gut anbietet.</p>
+<p>Um meinen Arbeitsprozess nachvollziehbarer zu machen, erkläre ich im Folgenden meine Gliederung. Diese dient für mich zur Orientierung im Entwicklungsprozess als auch zum Verständnis.</p>
 <h3 id="-1)-Anforderungsanalyse-"><a style="color: #83b818"> 1) Anforderungsanalyse </a><a class="anchor-link" href="#-1)-Anforderungsanalyse-">¶</a></h3><p>Orientiert an meinem Wissen, beinhaltet die Anforderungsanalyse folgende Punkte:</p>
-<p>=&gt; funktionale Anforderungen (selbsterklärend) <br/>
+<p>=&gt; funktionale Anforderungen (Funktionen die das Programm bedienen soll) <br/>
 =&gt; nicht-funktionale Anforderungen (Dienstqualität, Sicherheit, Umsetzbarkeit, etc.) <br/>
 =&gt; weitere Anforderungsarten (z.B. Architekturanforderungen) <br/>
 =&gt; Randbedingungen (Programmiersprachen, Frameworks, Kontextumgebung der zu bauenden Software, etc.) <br/></p>
 <p>==&gt; Spezifikation durch Priorisierung &amp; Akzeptanzkriterien</p>
-<p>Oftmals werden hier verschiedene Praktiken eingesetzt, um eine vernünftige Anforderungsanalyse zu gewährleisten. (Interviews, Nutzendenbeobachtung, Brain Storming, Use Cases, User Stories, Prototypen, etc.). Wichtig ist auch die Klärung des Arbeitsframeworks, je nach Gegebenheiten (V-Modell, SCRUM, etc.)</p>
-<h3 id="-2)-Problemzerlegung-/-Algorithmen-"><a style="color: #83b818"> 2) Problemzerlegung / Algorithmen </a><a class="anchor-link" href="#-2)-Problemzerlegung-/-Algorithmen-">¶</a></h3><p>In diesem Schritt schauen wir uns an, welche Probleme wir vorliegen haben und zerkleinern diese, wenn möglich, in einfachere und besser verständliche Probleme. Ebenfalls wird sich Gedanken um unsere gegebenen Probleme gemacht, wie wir diese Algorithmisch beschreiben können. Dies hilft später enorm bei der Implementierung.</p>
-<p>=&gt; Bsp.: Wir haben ein Spiel gegeben, welches ein Hexgrid besitzt. Auf diesem werden verschiedene Teilchen platziert, wobei wir verschiedene Muster haben. Diese Muster haben laut Regelwerk verschiedene Arten und Weisen um Punkte zu erzeugen.</p>
-<p>===&gt; Eine berechtigte Frage hier wäre, wie wir die Berechnung der Punkte algorithmisch modellieren können, bzw. welche Ansätze wir nutzen würden. Wenn es z.B. darum geht eine Maximale Kette an zeichen zu berechnen, dann können wir unser Feld hier als einen Graphen modellieren. Knoten wären die Felder und die Kanten die jeweiligen Nachbarschaften. Wenn wir jetzt die maximale Kette berechnen wollen, bietet sich ein Algorithmus wie Tiefensuche oder Breitensuche an.</p>
-<p>===&gt; Diese Idee müsste natürlich dann etwas besser durchdenkt und dokumentiert werden, allerdings reicht dies hier aus um meinen Punkt zu verdeutlichen.</p>
-<h3 id="-3)-Modellierung-/-Verst%C3%A4ndnis-"><a style="color: #83b818"> 3) Modellierung / Verständnis </a><a class="anchor-link" href="#-3)-Modellierung-/-Verst%C3%A4ndnis-">¶</a></h3><p>Auf Basis unserer Anforderungsanalyse fangen wir nun an erste erhobene Anforderungen zu modellieren, um ein technisches Verständnis zu bekommen.</p>
-<p>hier können verschiedene Arten von Diagrammen zum Einsatz kommen. <br/>
+<p>Oftmals werden hier verschiedene Praktiken eingesetzt, um eine vernünftige Anforderungsanalyse zu gewährleisten, wie Interviews, Nutzerbeobachtung, Brain Storming, Use Cases, User Stories, Prototypen, etc. Wichtig ist auch die Klärung des Arbeitsframeworks je nach Gegebenheiten (V-Modell, SCRUM, ...).</p>
+<h3 id="-2)-Problemzerlegung-/-Algorithmen-"><a style="color: #83b818"> 2) Problemzerlegung / Algorithmen </a><a class="anchor-link" href="#-2)-Problemzerlegung-/-Algorithmen-">¶</a></h3><p>In diesem Schritt schauen wir uns an, welche Probleme vorliegen, und zerkleinern diese, wenn möglich, in einfachere und besser verständliche Probleme. Ebenfalls werden sich Gedanken darüber gemacht, wie wir unsere gegebenen Probleme algorithmisch beschreiben können. Dies hilft später enorm bei der Implementierung.</p>
+<p>=&gt; Bsp.: Wir haben ein Spiel gegeben, welches ein Hexgrid besitzt. Auf diesem werden verschiedene Teilchen platziert, wobei wir verschiedene Muster haben. Diese Muster haben laut Regelwerk verschiedene Arten und Weisen, um Punkte zu erzeugen.</p>
+<p>===&gt; Eine berechtigte Frage hier wäre, wie wir die Berechnung der Punkte algorithmisch modellieren können bzw. welche Ansätze wir nutzen würden. Wenn es z.B. darum geht, eine maximale Kette an Zeichen zu berechnen, dann können wir unser Feld hier als einen Graphen modellieren. Knoten wären die Felder und die Kanten die jeweiligen Nachbarschaften. Wenn wir jetzt die maximale Kette berechnen wollen, bietet sich ein Algorithmus wie Tiefensuche oder Breitensuche an.</p>
+<p>===&gt; Diese Idee müsste natürlich dann etwas besser durchdacht und dokumentiert werden, allerdings reicht dies hier aus, um meinen Punkt zu verdeutlichen.</p>
+<h3 id="-3)-Modellierung-/-Verst%C3%A4ndnis-"><a style="color: #83b818"> 3) Modellierung / Verständnis </a><a class="anchor-link" href="#-3)-Modellierung-/-Verst%C3%A4ndnis-">¶</a></h3><p>Auf Basis unserer Anforderungsanalyse fangen wir nun an, erste erhobene Anforderungen zu modellieren, um ein technisches Verständnis zu bekommen.</p>
+<p>Hier können verschiedene Arten von Diagrammen zum Einsatz kommen. <br/>
 =&gt; Use-Case-Diagramme, Aktivitätsdiagramme, etc.</p>
-<p>Resultierend auf Basis dieser Diagramme, ist es uns möglich die Abläufe der einzelnen Schritte zu verstehen.</p>
-<h3 id="-4)-Architektur-und-Strukturdesign-"><a style="color: #83b818"> 4) Architektur und Strukturdesign </a><a class="anchor-link" href="#-4)-Architektur-und-Strukturdesign-">¶</a></h3><p>Natürlich müssen wir uns ebenfalls Gedanken um unsere Software-Architektur machen. Dazu gehört nicht nur klassischerweise die Modellierung von unseren Klassen die wir später Implementieren (UML-Klassendiagramme), sondern auch die Modellierung der Verantwortlichkeiten unserer Komponenten, dessen Schnittstellen und der einzelnen Schichten selber.</p>
+<p>Resultierend auf Basis dieser Diagramme ist es uns möglich, die Abläufe der einzelnen Schritte zu verstehen.</p>
+<h3 id="-4)-Architektur-und-Strukturdesign-"><a style="color: #83b818"> 4) Architektur und Strukturdesign </a><a class="anchor-link" href="#-4)-Architektur-und-Strukturdesign-">¶</a></h3><p>Natürlich müssen wir uns ebenfalls Gedanken um unsere Software-Architektur machen. Dazu gehört nicht nur klassischerweise die Modellierung unserer Klassen die wir später implementieren (UML-Klassendiagramme), sondern auch die Modellierung der Verantwortlichkeiten unserer Komponenten, deren Schnittstellen und der einzelnen Schichten selbst.</p>
 <p>Auch hier gibt es verschiedene Diagramme &amp; Arbeitsweisen. <br/>
-=&gt; UML Komponentendiagramme, UML Verteilungsdiagramme, etc. <br/>
-=&gt; ADD 3.0 könnte eingesetzt werden um Iterativ unsere Architektur zu designen <br/></p>
+=&gt; UML-Komponentendiagramme, UML-Verteilungsdiagramme, etc. <br/>
+=&gt; ADD 3.0 könnte eingesetzt werden, um iterativ unsere Architektur zu designen. <br/></p>
 <h3 id="-5)-Implementierung-"><a style="color: #83b818"> 5) Implementierung </a><a class="anchor-link" href="#-5)-Implementierung-">¶</a></h3><p>Die Implementierung ist natürlich das Herzstück unserer Software. Hier werden alle Anforderungen nach gegebener Architektur implementiert.</p>
-<h3 id="-6)-Testing-"><a style="color: #83b818"> 6) Testing </a><a class="anchor-link" href="#-6)-Testing-">¶</a></h3><p>Das Testing verläuft meist parallel zur Implementierung um die Funktionalität zu gewährleisten.</p>
+<h3 id="-6)-Testing-"><a style="color: #83b818"> 6) Testing </a><a class="anchor-link" href="#-6)-Testing-">¶</a></h3><p>Das Testing verläuft meist parallel zur Implementierung, um die Funktionalität zu gewährleisten.</p>
 <p>Typisch sind Tests wie: <br/>
-=&gt; Unit Tests, Integrationtests, End-to-End-Tests, etc.</p>
-<h3 id="-7)-Bugs-/-Fehlerbehandlung-/-Anforderungschecking-"><a style="color: #83b818"> 7) Bugs / Fehlerbehandlung / Anforderungschecking </a><a class="anchor-link" href="#-7)-Bugs-/-Fehlerbehandlung-/-Anforderungschecking-">¶</a></h3><p>Üblich beim iterativen Arbeiten, überprüfen wir in diesem Schritt, ob unser Programm Fehler beinhaltet.</p>
-<p>=&gt; Bugs: Führen meist zu einer Re-Iteration der Implementierung &amp; des Testings <br/>
-=&gt; falsche / fehlende Anforderungen: Dieser Schritt ist meist deutlich kostenintensiver, da wir unsere Entwicklung von vorne an neu anpassen müssen.</p>
-<p>Eine gute Anforderungserhebung und Qualitätssicherung welche Fehler früh findet &amp; minimiert ist dementsprechend essenziell. Dementsprechend müssen wir während unserer Schritte die Verifikation &amp; Validierung durchführen, um mit Qualitätsmaßen dies vernünftig zu beurteilen.</p>
-<h3 id="-8)-Produkt-/-Deployment-"><a style="color: #83b818"> 8) Produkt / Deployment </a><a class="anchor-link" href="#-8)-Produkt-/-Deployment-">¶</a></h3><p>Wenn unser Produkt fertig ist, ist es bereit zur Auslieferung an den Kunden. Da jedoch oftmals ein Produkt nicht nur ausgeliefert wird, sondern auch beim Kunden integriert wird, muss es auch gewartet &amp; geupdated werden.</p>
-<p>Genau für solche Cases, bennötigen wir DevOps, welches Development und Operations verbindet. Wichtig hierfür sind Kontinuierliche Integration &amp; Deployment um die Releases zu automatisieren, aber auch das Build-Management, Dependency-Management und Projekt-Management.</p>
-<h2 id="-Schluss-"><u> Schluss </u><a class="anchor-link" href="#-Schluss-">¶</a></h2><p>Im Nachhinein gibt es noch eine abschließende Analyse über das Programm, wie auch evt. Erweiterungen, welche in weiteren Iterationen implementiert werden können.</p>
-<h2 id="-Links-&amp;-externe-Tools-"><u> Links &amp; externe Tools </u><a class="anchor-link" href="#-Links-&amp;-externe-Tools-">¶</a></h2><p>Um Diagramme zu erstellen, benutze ich primär <a href="https://www.drawio.com">draw.io</a>, da ich gute Erfahrungen mit dem Tool bis jetzt gemacht habe. <br/>
-Für mögliche GUI-Konzepte werde ich <a href="https://www.figma.com/de-de/">Figma</a> benutzen.</p>
+=&gt; Unit-Tests, Integrationtests, End-to-End-Tests, etc.</p>
+<h3 id="-7)-Bugs-/-Fehlerbehandlung-/-Anforderungschecking-"><a style="color: #83b818"> 7) Bugs / Fehlerbehandlung / Anforderungschecking </a><a class="anchor-link" href="#-7)-Bugs-/-Fehlerbehandlung-/-Anforderungschecking-">¶</a></h3><p>Üblich beim iterativen Arbeiten überprüfen wir in diesem Schritt, ob unser Programm Fehler beinhaltet.</p>
+<p>=&gt; Bugs: führen meist zu einer Re-Iteration der Implementierung &amp; des Testings <br/>
+=&gt; falsche / fehlende Anforderungen: Dieser Schritt ist meist deutlich kostenintensiver, da wir unsere Entwicklung von vorn an neu anpassen müssen.</p>
+<p>Eine gute Anforderungserhebung und Qualitätssicherung, welche Fehler früh findet &amp; minimiert, ist dementsprechend essenziell. Dementsprechend müssen wir während unserer Schritte die Verifikation &amp; Validierung durchführen, um dies mit Qualitätsmaßen vernünftig zu beurteilen.</p>
+<h3 id="-8)-Produkt-/-Deployment-"><a style="color: #83b818"> 8) Produkt / Deployment </a><a class="anchor-link" href="#-8)-Produkt-/-Deployment-">¶</a></h3><p>Wenn unser Produkt fertig ist, ist es bereit zur Auslieferung an den Kunden. Da jedoch oftmals ein Produkt nicht nur ausgeliefert, sondern auch beim Kunden integriert wird, muss es auch gewartet &amp; geupdated werden.</p>
+<p>Genau für solche Cases bennötigen wir DevOps, welches Development und Operations verbindet. Wichtig hierfür sind kontinuierliche Integration &amp; Deployment, um die Releases zu automatisieren, aber auch das Build-Management, Dependency-Management und Projektmanagement.</p>
+<h2 id="-Schluss-"><u> Schluss </u><a class="anchor-link" href="#-Schluss-">¶</a></h2><p>Im Nachhinein gibt es noch eine abschließende Analyse über das Programm sowie evt. Erweiterungen, welche in weiteren Iterationen implementiert werden können.</p>
+<h2 id="-Links-&amp;-externe-Tools-"><u> Links &amp; externe Tools </u><a class="anchor-link" href="#-Links-&amp;-externe-Tools-">¶</a></h2><p>Um Diagramme zu erstellen, benutze ich primär <a href="https://www.drawio.com">draw.io</a>, da Ich gute Erfahrungen mit dem Tool gemacht habe.</p>
 <p><br/> <br/> <br/> <br/> <br/> <br/></p>
 </div>
 </div>
@@ -7577,7 +7577,7 @@ Für mögliche GUI-Konzepte werde ich <a href="https://www.figma.com/de-de/">Fig
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="1)-Anforderungsanalyse">1) Anforderungsanalyse<a class="anchor-link" href="#1)-Anforderungsanalyse">¶</a></h1><p>Im ersten Schritt führen wir die Anforderungsanalyse durch. Allerdings müssen wir auch eine Sache nochmal besprechen:</p>
-<h3 id="Annahmen">Annahmen<a class="anchor-link" href="#Annahmen">¶</a></h3><p>Da die bereits vorgegebenen Anforderungen relativ wenig sind und viel Spielraum lassen, werden wir ein paar Annahmen machen müssen, um evt. Unsicherheiten zu behandeln. Wir dokumentieren hier Designannahmen die wir über das Programm erheben.</p>
+<h3 id="Annahmen">Annahmen<a class="anchor-link" href="#Annahmen">¶</a></h3><p>Da die bereits vorgegebenen Anforderungen relativ wenig sind und viel Spielraum lassen, werden wir ein paar Annahmen machen müssen, um evt. Unsicherheiten zu behandeln. Wir dokumentieren hier Designannahmen, die wir über das Programm erheben.</p>
 <ul>
 <li>Das Programm läuft lokal auf einem Rechner.</li>
 <li>Spieler "Kreuz" &amp; "Kreis" bedienen abwechselnd dasselbe Interface.</li>
@@ -7586,7 +7586,7 @@ Für mögliche GUI-Konzepte werde ich <a href="https://www.figma.com/de-de/">Fig
 </ul>
 <p>Nun schauen wir uns die anderen Kernpunkte etwas genauer an:</p>
 <h3 id="-A)-Problemverst%C3%A4ndnis-"><a style="color: #9B5DE5"> A) Problemverständnis </a><a class="anchor-link" href="#-A)-Problemverst%C3%A4ndnis-">¶</a></h3><p>Das gewünschte Programm ist eine Art "Anti-Tic-Tac-Toe". Es soll von zwei Spielern spielbar sein und die vorgegebenen Regeln einhalten.
-Da das Spielfeld ein 4x4 Feld ist aber ein Verlust bei drei aneinander liegenden bereits gilt, müssen wir den Algorithmus später runterbrechen.</p>
+Da das Spielfeld ein 4x4 Feld ist, aber ein Verlust bei drei aneinander liegenden bereits gilt, müssen wir den Algorithmus später herunterbrechen.</p>
 <h3 id="-B)-funktionale-Anforderungen-"><a style="color: #9B5DE5"> B) funktionale Anforderungen </a><a class="anchor-link" href="#-B)-funktionale-Anforderungen-">¶</a></h3><p>Hier unterteilen wir nochmal in "Muss-" und "Kann-"Anforderungen, um klarer eine Struktur zu bekommen und eine Art der Priorisierung vorzunehmen.</p>
 <p><a style="color: #2d839b"> (Editors Note: Auch hier könnten wir weitere Unterscheidung in z.B. Spielregeln, Systemverhalten, etc. machen; für so ein kleines Programm jedoch erachte ich dies als nicht sinnvoll.) </a></p>
 <p>Muss-Anforderungen:</p>
@@ -7598,7 +7598,7 @@ Da das Spielfeld ein 4x4 Feld ist aber ein Verlust bei drei aneinander liegenden
 <li>Das Spiel endet unentschieden, wenn alle Felder gesetzt sind, ohne dass ein Spieler verloren hat.</li>
 <li>Das Programm ermöglicht es zwei Spielern, gegeneinander zu spielen, und achtet dabei auf die Einhaltung dieser Regeln.</li>
 </ul>
-<p>Kann-Anfordrungen:</p>
+<p>Kann-Anforderungen:</p>
 <ul>
 <li>Das Spiel zeigt an, welcher Spieler aktuell am Zug ist</li>
 <li>Das Programm verfügt über ein Menü, bei welchem man das Programm verlassen kann oder ein Spiel starten kann (beinhaltet evt. Namensvergabe)</li>
@@ -7609,19 +7609,18 @@ Da das Spielfeld ein 4x4 Feld ist aber ein Verlust bei drei aneinander liegenden
 </li>
 <li><p>ungültige Züge werden verhindert</p>
 </li>
-<li><p>Das Spiel zeigt den aktiellen Zustand des Spielfeldes an (Konsistenz mit Data-Schicht)</p>
+<li><p>Das Spiel zeigt den aktuellen Zustand des Spielfeldes an (Konsistenz mit Data-Schicht)</p>
 </li>
 <li><p>Das Spiel informiert über Sieg / Niederlage / Unentschieden</p>
 </li>
 <li><p>der Code ist sauber strukturiert</p>
 </li>
-<li><p>die Dokumentation ist vollständig und verständlich (mind. 90% der Klassen &amp; Funktionen)</p>
+<li><p>die Dokumentation ist vollständig und verständlich (mind. 90 % der Klassen &amp; Funktionen)</p>
 </li>
 </ul>
 <h3 id="-D)-Randbedingungen-"><a style="color: #9B5DE5"> D) Randbedingungen </a><a class="anchor-link" href="#-D)-Randbedingungen-">¶</a></h3><p>Aufgrund der niedrigen Komplexität der Aufgabe, werde ich die Aufgabe mit Python bearbeiten. Da ich jedoch nicht wirklich Erfahrung mit GUI-Frameworks in Python habe, habe ich <a href="https://chat.kiconnect.nrw/app/shares/69e3991677307cc2c538bba5">ChatGPT</a> mir eine kleine Übersicht erstellen lassen, um einen Überblick zu bekommen.</p>
-<p>Da ich wie bereits erwähnt keine Erfahrungen mit Python GUI-Frameworks habe und die Aufgabe recht simpel ist, werde ich bei der Python nativen GUI "Tkinter" bleiben, da dies ausreicht meine erhobenen Anforderungen zu implementieren.</p>
-<p><a style="color: #2d839b"> (Editors Note: Ich bin zwar ein großer Fan von vernünftig aussehenden GUIs, aber zum Zweck der Darstellung wird es ausreichen ^^) </a></p>
-<p><br/> <br/> <br/> <br/> <br/> <br/></p>
+<p>Da ich wie bereits erwähnt keine Erfahrungen mit Python GUI-Frameworks habe und die Aufgabe recht simpel ist, werde ich bei der Python nativen GUI "Tkinter" bleiben, da dies ausreicht meine erhobenen Anforderungen zu implementieren.
+<br/> <br/> <br/> <br/> <br/> <br/></p>
 </div>
 </div>
 </div>
@@ -7632,36 +7631,36 @@ Da das Spielfeld ein 4x4 Feld ist aber ein Verlust bei drei aneinander liegenden
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="2)-Problemzerlegung-/-Algorithmen">2) Problemzerlegung / Algorithmen<a class="anchor-link" href="#2)-Problemzerlegung-/-Algorithmen">¶</a></h1><p>Bevor wir zur Modellierung unseres Programmes kommen, müssen wir erst einmal etwas über das Herzstück des Programmes nachdenken: Den Algorithmus zur Bestimmung von 3 nebeneinander stehenden Zeichen.</p>
+<h1 id="2)-Problemzerlegung-/-Algorithmen">2) Problemzerlegung / Algorithmen<a class="anchor-link" href="#2)-Problemzerlegung-/-Algorithmen">¶</a></h1><p>Bevor wir zur Modellierung unseres Programmes kommen, müssen wir erst einmal etwas über das Herzstück des Programmes nachdenken: den Algorithmus zur Bestimmung von 3 nebeneinander stehenden Zeichen.</p>
 <p>Dafür müssen wir uns erst einmal konzeptionell in die Problematik eindenken.</p>
 <ul>
-<li>Gegeben ist ein 4x4 Feld, auf welchem abwechselnd Kreuze und Kreise gemalt werden.</li>
-<li>Verloren hat, wer als erstes drei nebeneinander stehende Zeichen hat, horizontal, vertikal oder diagonal.</li>
+<li>Gegeben ist ein 4x4 Feld, auf welchem abwechselnd Kreuze und Kreise gesetzt werden.</li>
+<li>Verloren hat, wer als Erstes drei nebeneinander stehende Zeichen hat, horizontal, vertikal oder diagonal.</li>
 </ul>
-<p>Berechtigterweise stellt sich nun ein Problem heraus: während der Case für einen Verlust auf 3x3 basiert, ist das Spielfeld 4x4 groß. Was tun wir also, damit wir vernünftig dies berechnen können?
+<p>Berechtigterweise stellt sich nun ein Problem heraus: während der Case für einen Verlust auf 3x3 basiert, ist das Spielfeld 4x4 groß. Was tun wir also, damit wir vernünftig dies berechnen können?<br/><br/>
 Unser Algorithmus soll folgendes machen:</p>
-<p>=&gt; "Finde auf dem 4x4 Spielfeld jede Folge von 3 direkt aufeinanderfolgenden Feldern welche horizontal, vertikal oder diagonal sein können. Dazu definieren wir uns gültige Startblöcke welche für die Überprüfung in Frage kommen, um mit wenig Problemen diese Folgen zu finden."</p>
-<p>Um nun die einzelnen Fälle abzudecken und auf Korrektheit zu prüfen, brauchen wir ein mathematisches Konstrukt auf dem wir unseren Algorithmus basieren können.</p>
-<h2 id="-Mathematische-Basis:-"><a style="color: #9B5DE5"> Mathematische Basis: </a><a class="anchor-link" href="#-Mathematische-Basis:-">¶</a></h2><p>Konzeptionell definieren wir jetzt gültige "Startpositionen" in unserem Feld, in welchen es Sinn macht zu überprüfen ob wir 3 aufeinanderfolgende Felder haben. Wenn wir zeigen können, dass wir alle Dreierblöcke auf alle gültigen Startpositionen abbilden können und ebenfalls anders herum, dass wir aus allen Startpositionen alle möglichen Dreierblöcke erreichen können, so können wir Garantieren, dass wir mit dieser Methode alle Fälle abdecken. Der Algorithmus wäre dann mathematisch vollständig und korrekt (Diese Abbildung / Funktion zwischen den Mengen muss bijektiv sein).</p>
-<p>Definieren wir also folgendes:</p>
+<p>=&gt; "Finde auf dem 4x4 Spielfeld jede Folge von 3 direkt aufeinanderfolgenden Feldern welche horizontal, vertikal oder diagonal sein können. Dazu definieren wir uns gültige Startblöcke, welche für die Überprüfung infrage kommen, um mit wenig Problemen diese Folgen zu finden."</p>
+<p>Um jetzt die einzelnen Fälle abzudecken und auf Korrektheit zu prüfen, brauchen wir ein mathematisches Konstrukt, auf dem wir unseren Algorithmus basieren können.</p>
+<h2 id="-Mathematische-Basis:-"><a style="color: #9B5DE5"> Mathematische Basis: </a><a class="anchor-link" href="#-Mathematische-Basis:-">¶</a></h2><p>Konzeptionell definieren wir jetzt gültige "Startpositionen" in unserem Feld, in welchen es Sinn macht, zu überprüfen, ob wir 3 aufeinanderfolgende Felder haben. Wenn wir zeigen können, dass wir alle Dreierblöcke auf alle gültigen Startpositionen abbilden können und ebenfalls andersherum, dass wir aus allen Startpositionen alle möglichen Dreierblöcke erreichen können insgesamt, so können wir garantieren, dass wir mit dieser Methode alle Fälle abdecken. Der Algorithmus wäre dann mathematisch vollständig und korrekt.</p>
+<p>Definieren wir also Folgendes:</p>
 <ul>
 <li>Das Feld besteht aus Koordinaten, welche das Feld aufspannen</li>
 <li>Die Feldkoordinaten bestehen aus dem kartesischen Produkt von X &amp; Y, wobei X = {0, 1, 2, 3} &amp; Y = {0, 1, 2, 3} <br/>
-<img alt="No description has been provided for this image" src="fieldCoordinates.svg"/></li>
+<img alt="No description has been provided for this image" src="assets/diagrams/fieldCoordinates.svg"/></li>
 <li>Sei |X| = 4 als Breite definiert; |Y| = 4 als Höhe definiert</li>
 <li>Wir betrachten die Richtungen horizontal, vertikal, diagonal (nach rechts unten), diagonal (nach links unten)</li>
 <li>horizontal verläuft von links nach rechts, vertikal verläuft von oben nach unten; diagonal (nach rechts unten) verläuft von oben links nach unten rechts &amp; diagonal (nach links unten) verläuft von oben rechts nach unten links <br/>
-<img alt="No description has been provided for this image" src="directionField.svg"/></li>
-<li>Um unsere Fälle zu betrachten müssen wir uns nun alle möglichen Startpositionen betrachten. Ein "Dreierblock" kann also nur da starten, wo noch zwei weitere Felder in der Richtung existieren. Formal heißt das für alle Fälle:<br/><br/>
-=&gt; Menge horizontale Startblöcke: $$ S_h: \{(x,y) \in X \times Y \mid (x,y), (x+1,y), (x+2,y) \in X \times Y\} = \\ \{(0,0), (1,0), (0,1), (1,1), (0,2), (1,2), (0,3), (1,3)\} $$ <br/>
-=&gt; Menge vertikale Startblöcke: $$ S_v: \{(x,y) \in X \times Y \mid (x,y), (x,y+1), (x,y+2) \in X \times Y\} = \\ \{(0,0), (0,1), (1,0), (1,1), (2,0), (2,1), (3,0), (3,1)\}$$ <br/>
-=&gt; Menge diagonale (nach rechts unten) Startblöcke: $$ S_{dru}: \{(x,y) \in X \times Y \mid (x,y), (x+1,y+1), (x+2,y+2) \in X \times Y\} = \\ \{(0,0), (1,0), (0,1), (1,1)\}$$ <br/>
-=&gt;Menge diagonale (nach links unten) Startblöcke: $$ S_{dlu}: \{(x,y) \in X \times Y \mid (x,y), (x-1,y+1), (x-2,y+2) \in X \times Y\} = \\ \{(2,0), (3,0), (2,1), (3,1)\}$$ <br/></li>
+<img alt="No description has been provided for this image" src="assets/diagrams/directionField.svg"/></li>
+<li>Um unsere Fälle zu betrachten, müssen wir uns nun alle möglichen Startpositionen betrachten. Ein "Dreierblock" kann also nur da starten, wo noch zwei weitere Felder in der Richtung existieren. Formal heißt das für alle Fälle:<br/><br/>
+=&gt; Menge horizontaler Startblöcke: $$ S_h: \{(x,y) \in X \times Y \mid (x,y), (x+1,y), (x+2,y) \in X \times Y\} = \\ \{(0,0), (1,0), (0,1), (1,1), (0,2), (1,2), (0,3), (1,3)\} $$ <br/>
+=&gt; Menge vertikaler Startblöcke: $$ S_v: \{(x,y) \in X \times Y \mid (x,y), (x,y+1), (x,y+2) \in X \times Y\} = \\ \{(0,0), (0,1), (1,0), (1,1), (2,0), (2,1), (3,0), (3,1)\}$$ <br/>
+=&gt; Menge diagonaler (nach rechts unten) Startblöcke: $$ S_{dru}: \{(x,y) \in X \times Y \mid (x,y), (x+1,y+1), (x+2,y+2) \in X \times Y\} = \\ \{(0,0), (1,0), (0,1), (1,1)\}$$ <br/>
+=&gt;Menge diagonaler (nach links unten) Startblöcke: $$ S_{dlu}: \{(x,y) \in X \times Y \mid (x,y), (x-1,y+1), (x-2,y+2) \in X \times Y\} = \\ \{(2,0), (3,0), (2,1), (3,1)\}$$ <br/></li>
 </ul>
-<p><a style="color: #2d839b"> (Editors note: für eine zukünftige Änderung für den NxN Fall müssten wir die Definition passend umbauen. Den Vollständigkeitsbeweis, dass für alle möglichen N die Startposition nur dann existieren kann, wenn zwei nachfolgende Felder existieren, könnte z.B.über vollständige Induktion bewiesen werden.</a></p>
-<p>Ebenfalls wäre es theoretisch möglich einen Richtungsvektor einzubauen, mit welchem wir dann einfach später mit einer Formel die jeweiligen möglichen Richtungen gehen könnten.) </p>
-<p>Um nun die Korrektheit zu folgern, müssen wir zeigen, dass jede mögliche Dreierfolge genau so eine Startposition besitzt. Nur so ist unser Algorithmus auch vollständig. Da unser Feld recht klein ist, Stelle ich jede mögliche Dreierfolge einem Startblock über. Wenn alle zugeteilt werden können, ist unsere Regel auch korrekt und wir können diese Implementieren als Fallunterscheidungen.</p>
-<p><a style="color: #2d839b"> (Editors note: Für den NxN reicht diese Definition / der Beweis natürlich nicht aus. Am besten sollten wir hierfür dann eine Funktion definieren für jeden Fall (horizontal, vertikal, etc.), welcher von der Startposition auf das Tripel abbildet. Dann müssten wir noch beweisen, dass die Menge aller Bildmengen von unseren definierten Funktionen und die Menge aller möglichen Dreierfolgen beide gleich sind.) </a></p>
+<p><a style="color: #2d839b"> (Editors note: Für eine zukünftige Änderung für den NxN-Fall müssten wir die Definition passend umbauen. Den Vollständigkeitsbeweis, dass für alle möglichen N die Startposition nur dann existieren kann, wenn zwei nachfolgende Felder existieren, könnte z.B.über vollständige Induktion bewiesen werden.</a></p>
+<p>Ebenfalls wäre es theoretisch möglich, einen Richtungsvektor einzubauen, mit welchem wir dann einfach später mit einer Formel die jeweiligen möglichen Richtungen gehen könnten.) </p>
+<p>Um nun die Korrektheit zu folgern, müssen wir zeigen, dass jede mögliche Dreierfolge genau so eine Startposition besitzt. Nur so ist unser Algorithmus auch vollständig. Da unser Feld recht klein ist, stelle ich jede mögliche Dreierfolge einem Startblock über. Wenn alle zugeteilt werden können, ist unsere Regel auch korrekt und wir können diese implementieren als Fallunterscheidungen.</p>
+<p><a style="color: #2d839b"> (Editors note: Für den NxN reicht diese Definition / der Beweis natürlich nicht aus. Am besten sollten wir hierfür dann eine Funktion definieren für jeden Fall (horizontal, vertikal, etc.), welche von der Startposition auf das Tripel abbildet. Dann müssten wir noch beweisen, dass die Menge aller Bildmengen von unseren definierten Funktionen und die Menge aller möglichen Dreierfolgen beide gleich sind.) </a></p>
 <p>Beweis:
 <br/> <br/>
 =&gt; horizontale Dreierfolgen <br/> <br/>
@@ -7692,26 +7691,26 @@ Unser Algorithmus soll folgendes machen:</p>
 ((2,1), (1,2), (0,3)) -&gt; (2,1) <br/>
 ((3,1), (2,2), (1,3)) -&gt; (3,1) <br/></p>
 <p>==&gt; Damit ist der Algorithmus mathematisch vollständig.</p>
-<p>Später werden wir diese Fallunterscheidung nutzen um gleiche Nachbarn zu analysieren, damit wir evt. Ketten oder 'hits' finden können.</p>
+<p>Später werden wir diese Fallunterscheidung nutzen, um gleiche Nachbarn zu analysieren, damit wir evt. Ketten oder 'hits' finden können.</p>
 <p><br/> <br/></p>
 <h2 id="-Der-Algorithmus-logisch-beschrieben:-"><a style="color: #9B5DE5"> Der Algorithmus logisch beschrieben: </a><a class="anchor-link" href="#-Der-Algorithmus-logisch-beschrieben:-">¶</a></h2><p>Der später implementierte Algorithmus wird dann so funktionieren:</p>
-<p>Der Rückgabewert der Funktion ist ein boolean, true für "Block gefunden" und false für "kein Block vorhanden".</p>
-<p>Als Basis für unsere Datenstruktur haben wir ein Grid [x][y] in welchem wir unsere Koordinaten stehen haben. Dieses Grid wird so implementert, dass es 3 mögliche Einträge / Zustände für ein einzelnes Feld in diesem geben kann: <br/></p>
+<p>Der Rückgabewert der Funktion ist ein Boolean, true für "Block gefunden" und false für "kein Block vorhanden".</p>
+<p>Als Basis für unsere Datenstruktur haben wir ein Grid [x][y] in welchem wir unsere Koordinaten stehen haben. Dieses Grid wird so implementiert, dass es 3 mögliche Einträge / Zustände für ein einzelnes Feld in diesem geben kann: <br/></p>
 <ol>
 <li>"0" = Das Feld ist leer und kein Zeichen ist gesetzt</li>
 <li>"1" = Spieler A hat das zum Spieler zugehörige Zeichen A gesetzt (Kreuz oder Kreis)</li>
-<li>"2" = Spieler B hat das zum Spieler zugehörige Zeichen B gesetzt (das jeweils andere was Spieler A nicht besitzt)</li>
+<li>"2" = Spieler B hat das zum Spieler gehörige Zeichen B gesetzt (das jeweils andere, was Spieler A nicht besitzt)</li>
 </ol>
-<p>Außerdem definieren wir eine Hilfsfunktion, welche am Anfang des Spiels unsere Startpositionen berechnet und in ein Array speichert. Zwar ist dies für den 4x4 Fall nicht zwingend notwendig (sie könnten auch einfach hart-codiert werden), aber interessant für eine mögliche NxN Erweiterung, welche dann dynamisch diese berechnen kann. <br/></p>
+<p>Außerdem definieren wir eine Hilfsfunktion, welche am Anfang des Spiels unsere Startpositionen berechnet und in einem Array speichert. Zwar ist dies für den 4x4-Fall nicht zwingend notwendig (sie könnten auch einfach hart codiert werden), aber interessant für eine mögliche NxN-Erweiterung, welche dann dynamisch diese berechnen kann. <br/></p>
 <p>Warum ist gerade so eine Hilfsfunktion nun interessant oder gar notwendig?<br/></p>
-<p>Wir haben bereits bewiesen, dass unser Konstrukt aus Startpositionen mathematisch vollständig und korrekt ist. Diese Eigenschaft machen wir uns nun zu nutzen, da wir wissen, dass ein Dreierblock nicht ohne Startposition existieren kann. D.h. unser Algorithmus muss erst dann auf einen möglichen Verlust prüfen, wenn ein Zeichen auf eine Startposition gesetzt wurde. <br/></p>
-<p>Dies ist effizienter, da der Algorithmus nicht auf allen möglichen Koordinaten ausgefürt wird. Ebenfalls erleichtert dies uns in keinen "Out-of-Bounds"-Fall zu rutschen, da wir wissen, dass die Fälle (horizontal, vertikal, diagonal) nicht über die Grid-Koordinaten hinaus gehen. <br/> <br/> <br/></p>
-<p>Der Algorithmus wird später nach Abschluss des Zuges, des gerade aktiven Spielers, ausgeführt (Siehe Sequenzdiagramm zu Spielzug). Der Algorithmus berechnet dann folgendes:</p>
+<p>Wir haben bereits bewiesen, dass unser Konstrukt aus Startpositionen mathematisch vollständig und korrekt ist. Diese Eigenschaft machen wir uns nun zunutze, da wir wissen, dass ein Dreierblock nicht ohne Startposition existieren kann. D.h. unser Algorithmus muss erst dann auf einen möglichen Verlust prüfen, wenn ein Zeichen auf eine Startposition gesetzt wurde. <br/></p>
+<p>Dies ist effizienter, da der Algorithmus nicht auf allen möglichen Koordinaten ausgeführt wird. Ebenfalls erleichtert dies uns, in weniger "Out-of-Bounds"-Fälle potentiell zu kommen, da wir wissen, dass die Fälle horizontal &amp; vertikal nicht über die Grid-Koordinaten hinausgehen (Diagonal ist hier ein Spezialfall dann). <br/> <br/> <br/></p>
+<p>Der Algorithmus wird später nach Abschluss des Zuges des gerade aktiven Spielers ausgeführt (Siehe Sequenzdiagramm zu Spielzug). Der Algorithmus berechnet dann Folgendes:</p>
 <ol>
-<li>Sammel alle Koordinaten von Einträgen im Grid des aktiven Spielers als Array Ka</li>
+<li>Sammle alle Koordinaten von Einträgen im Grid des aktiven Spielers als Array Ka</li>
 <li>Filter die Einträge aus Ka auf Startpositionen, indem wir den Schnitt der beiden Mengen bestimmen</li>
 <li>Wenn der Schnitt leer ist, hören wir mit dem Algorithmus auf (false) =&gt; weiter im Sequenzdiagramm</li>
-<li>Ist der Schnitt nicht leer, so müssen wir uns die Nachbarfelder der Koordinate angucken und schauen, ob dort ebenfalls ein Zeichen gesetzt ist (Wir geben die Koordinate dann an unsere Hilfsfunktionen, welche überprüfen ob ein horizontaler, vertikaler oder diagonaler Block besteht)</li>
+<li>Ist der Schnitt nicht leer, so müssen wir uns die Nachbarfelder der Koordinate angucken und schauen, ob dort ebenfalls ein Zeichen gesetzt ist (wir geben die Koordinate dann an unsere Hilfsfunktionen, welche überprüfen, ob ein horizontaler, vertikaler oder diagonaler Block besteht)</li>
 <li>Ist die Analyse unserer Hilfsfunktionen negativ, so hören wir mit dem Algorithmus auf (false) =&gt; weiter im Sequenzdiagramm</li>
 <li>Ist die Analyse unserer Hilfsfunktion positiv, so geben wir diese Info weiter (true) =&gt; weiter im Sequenzdiagramm</li>
 </ol>
@@ -7725,7 +7724,67 @@ Unser Algorithmus soll folgendes machen:</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="3)-Modeling-/-Verst%C3%A4ndnis">3) Modeling / Verständnis<a class="anchor-link" href="#3)-Modeling-/-Verst%C3%A4ndnis">¶</a></h1>
+<h1 id="3)-Modeling-/-Verst%C3%A4ndnis">3) Modeling / Verständnis<a class="anchor-link" href="#3)-Modeling-/-Verst%C3%A4ndnis">¶</a></h1><p>Auf Basis unserer Anforderungsanalyse können wir unsere Anforderungen modellieren, um ein technisches Verständnis der Abläufe des Programmes zu bekommen. Dazu werden wir folgende Diagramme benutzen:</p>
+<ul>
+<li>Use-Case-Diagramm: Interaktion zwischen Spieler &amp; System</li>
+</ul>
+<p><img alt="No description has been provided for this image" src="assets/diagrams/use_case_diagram.svg"/></p>
+<ul>
+<li>Aktivitätsdiagramm: Ablauf eines Spielzuges <br/>
+<img alt="No description has been provided for this image" src="assets/diagrams/activity_diagram_playturn.svg"/></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1be96deb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="4)-Architektur-&amp;-Strukturdesign">4) Architektur &amp; Strukturdesign<a class="anchor-link" href="#4)-Architektur-&amp;-Strukturdesign">¶</a></h1><p>Nachdem wir die Abläufe der Software modelliert haben, müssen wir uns nun Gedanken um die Architektur machen. Da das Programm recht simpel ist, reicht es aus, ein einfaches Klassendiagramm zu modellieren.</p>
+<p>Allerdings treffe ich hier eine Entscheidung, um die Aufgabe etwas einfacher zu machen: <br/> <br/></p>
+<p>Anstatt eine Startseite zu implementieren, über welche man ein Spiel starten kann, werde ich einfach nur das Gamefield direkt implementieren.<br/>
+Dies hat den Grund, dass die Null-Safety in Python nicht unbedingt gegeben ist. Außerdem möchte ich mich auf ein funktionsfähiges Spiel fokussieren.<br/>
+Dementsprechend entfällt der oben modellierte Use-Case "Spiel starten" (Use-Case-Diagramm).</p>
+<ul>
+<li>Klassendiagramm: <br/>
+<img alt="No description has been provided for this image" src="assets/diagrams/class_diagram.svg"/></li>
+</ul>
+<p>Nach dieser Iteration unserer Anforderungsanalyse &amp; Modellierung haben wir nun einen ersten State, welchen wir implementieren &amp; testen können.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=724c75fd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="5-+-6)-Implementierung-&amp;-Testing">5 + 6) Implementierung &amp; Testing<a class="anchor-link" href="#5-+-6)-Implementierung-&amp;-Testing">¶</a></h1><p>Da es schwierig ist, Code, welcher in verschiedenen Klassen liegt, in so einem Dokument festzulegen, habe ich meine Implementierung auf meinem GitHub Account hinterlegt.</p>
+<p><a href="https://github.com/Thopia03/3VerliertGame">https://github.com/Thopia03/3VerliertGame</a></p>
+<p>Ebenfalls beinhaltet es dieses Dokument, als auch die einzelnen Diagramme.</p>
+<h3 id="-1)-Iteration---Entity-Schicht-"><a style="color: #9B5DE5"> 1) Iteration - Entity-Schicht </a><a class="anchor-link" href="#-1)-Iteration---Entity-Schicht-">¶</a></h3><p>Nach erster Iteration der Implementierung habe ich ein vernünftiges Testing der Entity-Schicht vorgenommen. Dies hat den Grund, dass die Objekte der Entity-Schicht essenziell sind, damit der Code auch nicht auf falschen Daten arbeitet.</p>
+<p>Die Entity-Schicht ist nun vollständig implementiert, dokumeniert und hat bis jetzt keine Probleme oder Bugs hervorgehoben. Dementsprechend gehen wir weiter in die nächste Iteration, die Implementierung der Service-Schicht.</p>
+<h3 id="-2)-Iteration---Service-Schicht-"><a style="color: #9B5DE5"> 2) Iteration - Service-Schicht </a><a class="anchor-link" href="#-2)-Iteration---Service-Schicht-">¶</a></h3><p>Nach erster Implementierung &amp; Testing habe ich bemerkt, dass es schlauer ist, für die validStartingPositions ein Set zu nutzen, da wir dort später einfacher die Mengenoperationen machen können für unsere Koordinaten. Dementsprechend habe ich das nachträglich im Klassendiagramm geändert. Sonst sind die Tests des GameService positiv und ohne Probleme abgelaufen und ich kann weiter am playerActionService arbeiten.</p>
+<p>Allerdings ist mir aufgefallen dass, wenn man mit Python zweidimensionale Koordinaten abbildet, man Listen von Listen hat. Dementsprechend muss man bei der Art 'field[][]' der Referenzierung die Koordinaten anders referenzieren, da wir mit dieser Art erst die vertikalen und dann die horizontalen Koordinaten referenzieren, sprich 'field[y][x]'.</p>
+<p>Nach der nächsten Phase funktionieren unsere Hilfsfunktionen jetzt ohne Probleme. Nun müssen wir checken, ob unsere Hauptfunktionen funktionieren, damit wir nach dem Testing unsere GUI implementieren können.</p>
+<p>Auch die Tests der Hauptfunktionen sind positiv verlaufen, weswegen wir uns jetzt dem letzten Teil der Implementierung widmen können, der GUI unserer Applikation. Wie bereits in der Anforderungsanalyse erwähnt, nutzen wir Tkinter um diese zu bauen. Dabei legen wir Wert auf Funktionalität zunächst, bevor wir ein schönes Produkt später liefern.</p>
+<p>In Anbetracht der restlichen Zeit, die wir besitzen, wird dies auch so bleiben. Dementsprechend gehen wir jetzt in die letzte Phase der Implementierung.</p>
+<h3 id="-3)-Iteration---GUI-Schicht-und-Starter-Klasse-"><a style="color: #9B5DE5"> 3) Iteration - GUI-Schicht und Starter-Klasse </a><a class="anchor-link" href="#-3)-Iteration---GUI-Schicht-und-Starter-Klasse-">¶</a></h3><p>Nach dritter Implementierung ist die GUI nun auch vollständig einsetzbar. Klasse! Teil 7 haben wir aufgrund der geringen Größe des Projektes bereits in der Implementierung mit dem Testing abgefangen und alle Anforderungen, die gegeben wurden, sind erfolgreich umgesetzt worden.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99f1f15f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="8)-Deployment">8) Deployment<a class="anchor-link" href="#8)-Deployment">¶</a></h1><p>Da wir mit der Implementierung in der ersten Phase durch sind, ist das letzte Unterfangen, das wir haben, unser Deployment der Software. Da ich für diese Aufgabe kein CI/CD machen werde, ist der Fokus hier auf das erfolgreiche Replizieren der Datei der Hauptfokus. Dafür werde ich eine README noch nacharbeiten, welche vernünftig den Code replizieren lässt.</p>
 </div>
 </div>
 </div>
@@ -7736,11 +7795,68 @@ Unser Algorithmus soll folgendes machen:</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Schlussteil">Schlussteil<a class="anchor-link" href="#Schlussteil">¶</a></h2><p>Zu dem Zeitpunkt wo ich dies hier schreibe, bin ich gerade dabei die Anforderungsanalyse abzuschließen. Allerdings sind mir ein paar Ideen gekommen, wie man das Programm erweitern könnte in weiteren Iterationen, weswegen ich diese schon einmal hier dokumentiere.</p>
+<h2 id="Schlussteil">Schlussteil<a class="anchor-link" href="#Schlussteil">¶</a></h2><p>Zu dem Zeitpunkt, wo ich dies hier schreibe, bin ich gerade dabei, die Anforderungsanalyse abzuschließen. Allerdings sind mir ein paar Ideen gekommen, wie man das Programm in weiteren Iterationen erweitern könnte, weswegen ich diese schon einmal hier dokumentiere.</p>
 <ul>
 <li>Einzelspielermodus gegen einen Bot (Random, Monte-Carlo, Minimax)</li>
 <li>Anzeigen einer Spielhistorie</li>
-<li>Erweiterung des Feldes auf NxN Größe (weitere Erklärung hierzu gibt es im Editors note zur Problemzerlegung / Algorithmen)</li>
+<li>Erweiterung des Feldes auf NxN-Größe (weitere Erklärung hierzu gibt es in den Editors-Notes zur Problemzerlegung / Algorithmen)</li>
+</ul>
+<p>Weitere Anforderungen oder eher Features, die nach Abschluss der Implementierungsphase aufgekommen sind, könnten sein:</p>
+<ul>
+<li>Customizable Theme</li>
+<li>Menu-Scene, über welche man Namen festlegen kann oder auch Zeichen, mit welchen man custom spielen kann</li>
+</ul>
+<p>Außerdem möchte ich noch eine abschließende Analyse abgeben. Das Programm läuft bis jetzt ganz gut, allerdings könnten einige Sachen in der Modellierung verbessert werden. Das Attribut "validStartPositions" in der GameService-Klasse könnte in den PlayerActionService verlegt werden, um die Kopplung zwischen den Services zu verringern.<br/><br/></p>
+<h2 id="-Laufzeit-"><a style="color: #9B5DE5"> Laufzeit </a><a class="anchor-link" href="#-Laufzeit-">¶</a></h2><p>Ebenfalls stellt sich die Frage, ob der Algorithmus mit den 'validen Startpositionen' wirklich für einen NxN-Fall effizienter wäre.</p>
+<p>Wir schauen uns den Algorithmus einmal an:<br/><br/><br/></p>
+<p><a style="color: #83b818"> "1) Collect all coordinates of the symbols placed by the current player.": </a><br/><br/>
+Im Worst-Case bauen wir uns ein Feld mit der Größe $O\!\left(\frac{n^2}{2}\right) = O(n^2)$ <br/>
+Ebenfalls gehen wir durch das ganze Feld, dementsprechend haben wir hier auf jeden Fall eine Laufzeit von $O(n^2)$</p>
+<p><a style="color: #83b818"> "2) Now we filter the list by intersecting the coordinates with the valid start positions.": </a><br/><br/>
+Wir definieren</p>
+<ul>
+<li>A = playerCoordinates</li>
+<li>B = validStartPositions</li>
+</ul>
+<p>Die Komplexität unseres Schnittes ist $O(\min(\lvert A\rvert, \lvert B\rvert))$
+Für ein NxN-Feld gilt, dass validStartPositions $\approx O(n^2)$, da wir nur konstant 25 % einsparen und die Anzahl der möglichen Startpunkte quadratisch wächst.<br/>
+Dementsprechend gilt für Worst-Case an Speicherplatz: $O(\min(\lvert A\rvert, \lvert B\rvert)) = O(\min(O(n^2), O(n^2))) = O(n^2)$ (auch für Laufzeit, da wir quadratisch große Mengen miteinander vergleichen).</p>
+<p>3 brauchen wir nicht zu analysieren, da es eine einfache Überprüfung ist.</p>
+<p><a style="color: #83b818"> "4) Now that there are valid start positions, we need to check their neighbours for a hit." </a><br/><br/>
+Wir haben hier vier Methoden, welche die Überprüfung durchführen auf unseren playerCoordinates:</p>
+<ul>
+<li>checkHorizontal</li>
+<li>checkVertical</li>
+<li>checkDiagonalRightDown</li>
+<li>CheckDiagonalLeftDown</li>
+</ul>
+<p>Worst-case haben wir hier $\lvert playerCoodinates\rvert = O(n^2)$ viele Koordinaten die wir überprüfen in der Laufzeit.
+Da die Funktionen selber nur konstant viele Feldzugriffe (zwei) machen, bleibt die Laufzeit $O(n^2)$.
+Auch die Anzahl der Überprüfungen (vier) bleibt gleich, dementsprechend bleibt unsere Laufzeit hier $O(n^2)$</p>
+<p>Da die anderen beiden Cases wie 3 einfache Überprüfungen für "checkField" sind, können wir die Gesamtlaufzeit berechnen.</p>
+<p><a style="color: #83b818"> Gesamtlaufzeit </a><br/><br/>
+Wenn wir alle Cases zusammenführen, berechnet sich unsere Laufzeit als: $T(n) = O(n^2) + O(n^2) + O(n^2) = O(n^2)$</p>
+<p>Unser Speicherverbrauch bezieht sich durch die beiden Strukturen "playerCoordinates" und "ValidStartPositions" auf $S(n) = O(n^2) + O(n^2) = O(n^2)$</p>
+<p>Für unseren 4x4-Fall ist dies unproblematisch, da wir konstant hier bleiben.</p>
+<p>Ist unser Algorithmus nun unnötig kompliziert?</p>
+<p>Meiner Meinung nach ist der Algorithmus ein interessanter Approach bezüglich des Problems, er spart jedoch nichts an Komplexität ein.
+Alternativ könnte man auch einfach einen einfachen Algorithmus beschreiben, welcher nur vom zuletzt plazierten Feld aus prüft.
+Dies wäre für einen NxN-Fall wahrscheinlich einfacher zu lösen und weniger komplex, allerdings würde auch hierzu eine vernünftige Analyse fällig.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43d30110">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Abschlie%C3%9Fende-Worte">Abschließende Worte<a class="anchor-link" href="#Abschlie%C3%9Fende-Worte">¶</a></h2><p>Wie bereits ganz oben erwähnt, befindet sich der Source-Code auf meinem GitHub-Account unter <a href="https://github.com/Thopia03/3VerliertGame">https://github.com/Thopia03/3VerliertGame</a></p>
+<p>Bei Fragen oder Feedback bin ich gerne jederzeit erreichbar.</p>
+<p>Danke für die interessante Aufgabe und ich freue mich auf eine positive Rückmeldung!</p>
+<ul>
+<li>Nico Rautert (Thopia)</li>
 </ul>
 </div>
 </div>
@@ -7753,7 +7869,7 @@ Unser Algorithmus soll folgendes machen:</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Sources-&amp;-Links:">Sources &amp; Links:<a class="anchor-link" href="#Sources-&amp;-Links:">¶</a></h1><p><a href="https://www.drawio.com">https://www.drawio.com</a> <br/>
-<a href="https://www.figma.com/de-de/">https://www.figma.com/de-de/</a> <br/></p>
+<a href="https://docs.python.org/3/library/tkinter.html">https://docs.python.org/3/library/tkinter.html</a> <br/></p>
 </div>
 </div>
 </div>
