@@ -9,14 +9,14 @@ class Board:
         field (list): A 4x4 list representing the game field.
         players (list): A list of Player objects representing the two players in the game.
         currentPlayer (int): An integer representing the index of the current player in the players list
-        gameState (int): An integer representing the current state of the game. 0 for ongoing, 1 for player 1 wins, 2 for player 2 wins, and -1 for a draw.
+        gameState (int): An integer representing the current state of the game.
     """
 
     def __init__(self):
         self.field = [[0 for i in range(4)] for j in range(4)]
         self.players = [Player(1), Player(2)]
         self.currentPlayer = 0
-        self.gameState = 1 # game state 0 for stopped, game state 1 for running
+        self.gameState = 1 # game state 0 for stopped, game state 1 for running, 2 = draw
 
     def nextPlayer(self):
         """Switches the current player to the next. As we use an integer to represent the current player index, we use modulo to switch between 0 and 1."""
